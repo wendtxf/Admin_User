@@ -1,6 +1,6 @@
 $ErrorActionPreference= 'silentlycontinue'
 
-# Executa como administrador, libera a politica de execução de Scripts e permanece no diretório atual.
+# Executa como administrador, libera a politica de execuÃ§Ã£o de Scripts e permanece no diretÃ³rio atual.
 if(-Not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000) {
         Start-Process PowerShell -Verb RunAs -ArgumentList "-NoProfile -ExecutionPolicy Unrestricted -Command `"cd '$pwd'; & '$PSCommandPath';`"";
@@ -9,20 +9,20 @@ if(-Not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentit
 }
 Clear-Host
 
-# Cria o usuário "NOME_USUÁRIO" e define a senha
-net user "NOME_USUÁRIO" 'SENHA_USUÁRIO' /add
+# Cria o usuÃ¡rio "NOME_USUÃRIO" e define a senha
+net user "NOME_USUÃRIO" 'SENHA_USUÃRIO' /add
 
-# Impede a expiração da senha após 42 dias
+# Impede a expiraÃ§Ã£o da senha apÃ³s 42 dias
 NET ACCOUNTS /MAXPWAGE:UNLIMITED
 
-# Seta o usuário "NOME_USUÁRIO" como ADM
-net localgroup Administradores "NOME_USUÁRIO" /add
+# Seta o usuÃ¡rio "NOME_USUÃRIO" como ADM
+net localgroup Administradores "NOME_USUÃRIO" /add
 
-# Remove o usuário "NOME_USUÁRIO" como usuário comum
-net localgroup Usuários "NOME_USUÁRIO" /delete
+# Remove o usuÃ¡rio "NOME_USUÃRIO" como usuÃ¡rio comum
+net localgroup UsuÃ¡rios "NOME_USUÃRIO" /delete
 
 Clear-Host
 
 Write-Output ("============================")
-Write-Output ("Usuário criado com sucesso!")
+Write-Output ("UsuÃ¡rio criado com sucesso!")
 Write-Output ("============================")
